@@ -1,0 +1,10 @@
+
+{% extends "layouts/base.html" %}
+
+{% block title %} {{ review.name }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+  <h1>{{ review.name }}</h1>
+  <p>{{ review.description }}</p>
+  <a href="{% url 'edit_review' slug=review.slug %}">Edit me!</a>
+{% endblock %}

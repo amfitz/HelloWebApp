@@ -1,12 +1,15 @@
 
 {% extends "layouts/base.html" %}
-{% load humanize %}
+
 {% block title %}Homepage - {{ block.super }}{% endblock %}
 
 {% block content %}
-  <h1>Hello World!</h1>
-
-  <p>There are {{ number|apnumber }} walrus{{ number|pluralize:"es" }}!</p>
-  <p>This is my name: {{ thing|truncatewords:1 }}</p>
-  <p>I am a basic website.</p>
+{% for review in reviews %}
+<h2>
+    <a href="{% url 'review_detail' slug=review.slug %}">
+    {{ review.name }}
+    </a>
+</h2>
+<p>{{ review.description }}</p>
+{% endfor %}
 {% endblock %}
