@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Browse - {{ block.super }}{% endblock %}
+{% block content %}
+<h1>Browse Things{% if initial %}Starting with'{{ initial|title }}'{% endif %}</h1>
+
+{% for letter in 'abcdefghijklmnopqrstuvwxyz' %}
+<a href="{% url 'browse_by_name' initial=letter %}"{% if initial == letter %}class="active"{% endif %}>{{ letter|upper }}</a>
+{% endfor %}
+
+{% for review in reviews %}
+<ul>
+  <li>
+    <a href="{% url 'review_detail' slug=review.slug %}">{{ review.name }}</a>
+  </li>
+</ul>
+{% empty %}
+<p>Sorry, no results!</p>
+{% endfor %}
+{% endblock %}
